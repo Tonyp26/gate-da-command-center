@@ -1,5 +1,6 @@
 import StatCard from "../components/StatCard"
 import SubjectCard from "../components/SubjectCard"
+import { subjects } from "../data/subjects"
 
 export default function Dashboard() {
   return (
@@ -39,25 +40,19 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-2 gap-4">
 
-        <SubjectCard
-          subject="Linear Algebra"
-          progress={0}
-        />
-
-        <SubjectCard
-          subject="Numerical Ability"
-          progress={0}
-        />
-
-        <SubjectCard
-          subject="Probability & Statistics"
-          progress={0}
-        />
-
-        <SubjectCard
-          subject="Python"
-          progress={0}
-        />
+        {subjects.map((subject) => (
+          <SubjectCard
+            key={subject.name}
+            subject={subject.name}
+            studiedHours={subject.studiedHours}
+            totalHours={subject.totalHours}
+            progress={
+              Math.round(
+                (subject.studiedHours / subject.totalHours) * 100
+              ) || 0
+            }
+          />
+        ))}
 
       </div>
 

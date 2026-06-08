@@ -1,4 +1,5 @@
 import StatCard from "../components/StatCard"
+import SubjectCard from "../components/SubjectCard"
 
 export default function Dashboard() {
   return (
@@ -28,6 +29,34 @@ export default function Dashboard() {
         <StatCard
           title="Days Left"
           value="245"
+        />
+
+      </div>
+
+      <h2 className="text-2xl font-bold mt-10 mb-5">
+        Subjects
+      </h2>
+
+      <div className="grid grid-cols-2 gap-4">
+
+        <SubjectCard
+          subject="Linear Algebra"
+          progress={0}
+        />
+
+        <SubjectCard
+          subject="Numerical Ability"
+          progress={0}
+        />
+
+        <SubjectCard
+          subject="Probability & Statistics"
+          progress={0}
+        />
+
+        <SubjectCard
+          subject="Python"
+          progress={0}
         />
 
       </div>

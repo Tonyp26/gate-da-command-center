@@ -3,18 +3,19 @@ type Props = {
   value: string
 }
 
-export default function StatCard({ title, value }: Props) {
+export default function StatCard({
+  title,
+  value
+}: Props) {
   return (
-    <div className="bg-[#1C2128] p-5 rounded-xl">
-
-      <h3 className="text-gray-400">
+    <div className="bg-[#1C2128] p-6 rounded-xl">
+      <p className="text-gray-400 text-lg">
         {title}
-      </h3>
-
-      <p className="text-3xl font-bold">
-        {value}
       </p>
 
+      <h2 className="text-4xl font-bold mt-2">
+        {value}
+      </h2>
     </div>
   )
 }

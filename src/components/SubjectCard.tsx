@@ -1,15 +1,19 @@
 type Props = {
     subject: string
     progress: number
-    studiedHours: number
+    studiedMinutes: number
     totalHours: number
+    onAddHour: () => void
+    onAdd30Min: () => void
 }
 
 export default function SubjectCard({
     subject,
     progress,
-    studiedHours,
-    totalHours
+    studiedMinutes,
+    totalHours,
+    onAddHour,
+    onAdd30Min
 }: Props) {
     return (
         <div className="bg-[#1C2128] p-5 rounded-xl">
@@ -25,7 +29,7 @@ export default function SubjectCard({
             </div>
 
             <p className="text-gray-400 text-sm mb-3">
-                {studiedHours} / {totalHours} Hours
+                {(studiedMinutes / 60).toFixed(1)} / {totalHours} Hours
             </p>
 
             <div className="w-full h-3 bg-gray-700 rounded-full">
@@ -35,6 +39,22 @@ export default function SubjectCard({
                         width: `${progress}%`
                     }}
                 />
+            </div>
+
+            <div className="flex gap-2 mt-4">
+                <button
+                    onClick={onAddHour}
+                    className="bg-blue-600 px-3 py-2 rounded-lg"
+                >
+                    +1 Hour
+                </button>
+
+                <button
+                    onClick={onAdd30Min}
+                    className="bg-green-600 px-3 py-2 rounded-lg"
+                >
+                    +30 Min
+                </button>
             </div>
 
         </div>

@@ -1,10 +1,25 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import StatCard from "../components/StatCard"
 import SubjectCard from "../components/SubjectCard"
 import { subjects } from "../data/subjects"
 
 export default function Dashboard() {
-  const [subjectData, setSubjectData] = useState(subjects)
+  const [subjectData, setSubjectData] = useState(() => {
+    const savedData =
+      localStorage.getItem("gateSubjects")
+
+    return savedData
+      ? JSON.parse(savedData)
+      : subjects
+  })
+
+  useEffect(() => {
+    localStorage.setItem(
+      "gateSubjects",
+      JSON.stringify(subjectData)
+    )
+  }, [subjectData])
+
 
   const addHour = (subjectName: string) => {
     setSubjectData(

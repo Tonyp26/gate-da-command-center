@@ -12,6 +12,22 @@ export default function Dashboard() {
       ? JSON.parse(savedData)
       : subjects
   })
+  const totalStudiedHours =
+    subjectData.reduce(
+      (total, subject) =>
+        total + subject.studiedMinutes,
+      0
+    ) / 60
+  const totalHours =
+    subjectData.reduce(
+      (total, subject) =>
+        total + subject.totalHours,
+      0
+    )
+
+  const overallProgress = Math.round(
+    (totalStudiedHours / totalHours) * 100
+  )
 
   useEffect(() => {
     localStorage.setItem(
@@ -62,12 +78,12 @@ export default function Dashboard() {
       <div className="grid grid-cols-4 gap-4">
         <StatCard
           title="Progress"
-          value="0%"
+          value={`${overallProgress}%`}
         />
 
         <StatCard
           title="Hours"
-          value="0/181"
+          value={`${totalStudiedHours.toFixed(1)}/181`}
         />
 
         <StatCard

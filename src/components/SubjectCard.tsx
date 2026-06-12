@@ -23,9 +23,15 @@ export default function SubjectCard({
                     {subject}
                 </h3>
 
-                <span>
-                    {progress}%
-                </span>
+                {progress === 100 ? (
+                    <span className="text-green-400 font-semibold">
+                        ✅ Completed
+                    </span>
+                ) : (
+                    <span>
+                        {progress}%
+                    </span>
+                )}
             </div>
 
             <p className="text-gray-400 text-sm mb-3">
@@ -34,7 +40,10 @@ export default function SubjectCard({
 
             <div className="w-full h-3 bg-gray-700 rounded-full">
                 <div
-                    className="h-3 bg-blue-500 rounded-full"
+                    className={`h-3 rounded-full ${progress === 100
+                            ? "bg-green-500"
+                            : "bg-blue-500"
+                        }`}
                     style={{
                         width: `${progress}%`
                     }}

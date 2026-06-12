@@ -15,6 +15,25 @@ export default function SubjectCard({
     onAddHour,
     onAdd30Min
 }: Props) {
+
+    if (progress === 100) {
+        return (
+            <div className="bg-green-600 border-4 border-green-300 p-5 rounded-xl flex flex-col items-center justify-center min-h-[200px]">
+                <div className="text-6xl font-bold">
+                    ✓
+                </div>
+
+                <h3 className="text-2xl font-bold mt-3">
+                    COMPLETED
+                </h3>
+
+                <p className="mt-2 text-lg">
+                    {subject}
+                </p>
+            </div>
+        )
+    }
+
     return (
         <div className="bg-[#1C2128] p-5 rounded-xl">
 
@@ -23,15 +42,9 @@ export default function SubjectCard({
                     {subject}
                 </h3>
 
-                {progress === 100 ? (
-                    <span className="text-green-400 font-semibold">
-                        ✅ Completed
-                    </span>
-                ) : (
-                    <span>
-                        {progress}%
-                    </span>
-                )}
+                <span>
+                    {progress}%
+                </span>
             </div>
 
             <p className="text-gray-400 text-sm mb-3">
@@ -40,10 +53,7 @@ export default function SubjectCard({
 
             <div className="w-full h-3 bg-gray-700 rounded-full">
                 <div
-                    className={`h-3 rounded-full ${progress === 100
-                            ? "bg-green-500"
-                            : "bg-blue-500"
-                        }`}
+                    className="h-3 bg-blue-500 rounded-full"
                     style={{
                         width: `${progress}%`
                     }}

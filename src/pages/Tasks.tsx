@@ -1,6 +1,22 @@
-import { tasks } from "../data/tasks"
+import { useState } from "react"
+import { tasks as initialTasks } from "../data/tasks"
 
 export default function Tasks() {
+    const [tasks, setTasks] = useState(initialTasks)
+
+    const toggleTask = (id: number) => {
+        setTasks(
+            tasks.map((task) =>
+                task.id === id
+                    ? {
+                        ...task,
+                        completed: !task.completed
+                    }
+                    : task
+            )
+        )
+    }
+
     return (
         <div className="flex-1 p-8">
 
@@ -15,7 +31,12 @@ export default function Tasks() {
                         key={task.id}
                         className="bg-[#1C2128] p-4 rounded-xl"
                     >
-                        {task.text}
+                        <div
+                            onClick={() => toggleTask(task.id)}
+                            className="cursor-pointer text-lg"
+                        >
+                            {task.completed ? "☑" : "☐"} {task.text}
+                        </div>
                     </div>
                 ))}
 

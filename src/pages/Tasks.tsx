@@ -32,6 +32,14 @@ export default function Tasks() {
         setNewTask("")
     }
 
+    const deleteTask = (id: number) => {
+        setTasks(
+            tasks.filter(
+                (task) => task.id !== id
+            )
+        )
+    }
+
     return (
         <div className="flex-1 p-8">
 
@@ -65,17 +73,24 @@ export default function Tasks() {
                 {tasks.map((task) => (
                     <div
                         key={task.id}
-                        className="bg-[#1C2128] p-4 rounded-xl"
+                        className="bg-[#1C2128] p-4 rounded-xl flex justify-between items-center"
                     >
                         <div
-                            onClick={() =>
-                                toggleTask(task.id)
-                            }
-                            className="cursor-pointer text-lg"
+                            onClick={() => toggleTask(task.id)}
+                            className={`cursor-pointer text-lg ${task.completed
+                                    ? "line-through text-gray-400"
+                                    : ""
+                                }`}
                         >
-                            {task.completed ? "☑" : "☐"}{" "}
-                            {task.text}
+                            {task.completed ? "☑" : "☐"} {task.text}
                         </div>
+
+                        <button
+                            onClick={() => deleteTask(task.id)}
+                            className="text-red-400 text-xl hover:scale-110"
+                        >
+                            🗑
+                        </button>
                     </div>
                 ))}
 

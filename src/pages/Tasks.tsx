@@ -71,6 +71,11 @@ export default function Tasks() {
                     onChange={(e) =>
                         setNewTask(e.target.value)
                     }
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            addTask()
+                        }
+                    }}
                     placeholder="Enter a task..."
                     className="flex-1 bg-[#1C2128] p-3 rounded-xl outline-none"
                 />
@@ -94,8 +99,8 @@ export default function Tasks() {
                         <div
                             onClick={() => toggleTask(task.id)}
                             className={`cursor-pointer text-lg ${task.completed
-                                    ? "line-through text-gray-400"
-                                    : ""
+                                ? "line-through text-gray-400"
+                                : ""
                                 }`}
                         >
                             {task.completed ? "☑" : "☐"} {task.text}

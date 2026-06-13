@@ -1,11 +1,12 @@
 import Sidebar from "./components/Sidebar"
-import Dashboard from "./pages/Dashboard"
+
+import Tasks from "./pages/Tasks"
 
 function App() {
   return (
     <div className="flex">
       <Sidebar />
-      <Dashboard />
+      <Tasks />
     </div>
   )
 }

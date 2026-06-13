@@ -1,9 +1,25 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { tasks as initialTasks } from "../data/tasks"
 
 export default function Tasks() {
-    const [tasks, setTasks] = useState(initialTasks)
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = localStorage.getItem("gateTasks")
+
+        return savedTasks
+            ? JSON.parse(savedTasks)
+            : initialTasks
+    })
+
     const [newTask, setNewTask] = useState("")
+
+    useEffect(() => {
+        console.log("Saving tasks...", tasks)
+
+        localStorage.setItem(
+            "gateTasks",
+            JSON.stringify(tasks)
+        )
+    }, [tasks])
 
     const toggleTask = (id: number) => {
         setTasks(

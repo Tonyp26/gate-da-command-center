@@ -13,8 +13,6 @@ export default function Tasks() {
     const [newTask, setNewTask] = useState("")
 
     useEffect(() => {
-        console.log("Saving tasks...", tasks)
-
         localStorage.setItem(
             "gateTasks",
             JSON.stringify(tasks)
@@ -63,6 +61,50 @@ export default function Tasks() {
                 Tasks
             </h1>
 
+            {/* Statistics Cards */}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+
+                <div className="bg-[#1C2128] p-4 rounded-xl">
+                    <p className="text-gray-400">
+                        Total Tasks
+                    </p>
+
+                    <h2 className="text-2xl font-bold">
+                        {tasks.length}
+                    </h2>
+                </div>
+
+                <div className="bg-[#1C2128] p-4 rounded-xl">
+                    <p className="text-gray-400">
+                        Completed
+                    </p>
+
+                    <h2 className="text-2xl font-bold text-green-400">
+                        {
+                            tasks.filter(
+                                (task) => task.completed
+                            ).length
+                        }
+                    </h2>
+                </div>
+
+                <div className="bg-[#1C2128] p-4 rounded-xl">
+                    <p className="text-gray-400">
+                        Pending
+                    </p>
+
+                    <h2 className="text-2xl font-bold text-yellow-400">
+                        {
+                            tasks.filter(
+                                (task) => !task.completed
+                            ).length
+                        }
+                    </h2>
+                </div>
+
+            </div>
+
+            {/* Add Task */}
             <div className="flex gap-3 mb-6">
 
                 <input
@@ -89,6 +131,7 @@ export default function Tasks() {
 
             </div>
 
+            {/* Task List */}
             <div className="space-y-4">
 
                 {tasks.map((task) => (
@@ -99,8 +142,8 @@ export default function Tasks() {
                         <div
                             onClick={() => toggleTask(task.id)}
                             className={`cursor-pointer text-lg ${task.completed
-                                ? "line-through text-gray-400"
-                                : ""
+                                    ? "line-through text-gray-400"
+                                    : ""
                                 }`}
                         >
                             {task.completed ? "☑" : "☐"} {task.text}

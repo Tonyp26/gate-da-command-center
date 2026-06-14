@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 export default function Sidebar() {
   return (
@@ -10,23 +10,37 @@ export default function Sidebar() {
 
       <div className="space-y-4">
 
-        <Link
+        <NavLink
           to="/"
-          className="block hover:text-blue-400"
+          className={({ isActive }) =>
+            `block p-2 rounded-lg ${isActive
+              ? "bg-blue-600 text-white"
+              : "hover:bg-[#21262D]"
+            }`
+          }
         >
           Dashboard
-        </Link>
+        </NavLink>
 
-        <div>Subjects</div>
+        <div className="p-2 text-gray-500">
+          Subjects
+        </div>
 
-        <Link
+        <NavLink
           to="/tasks"
-          className="block hover:text-blue-400"
+          className={({ isActive }) =>
+            `block p-2 rounded-lg ${isActive
+              ? "bg-blue-600 text-white"
+              : "hover:bg-[#21262D]"
+            }`
+          }
         >
           Tasks
-        </Link>
+        </NavLink>
 
-        <div>Analytics</div>
+        <div className="p-2 text-gray-500">
+          Analytics
+        </div>
 
       </div>
 

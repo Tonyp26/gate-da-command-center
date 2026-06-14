@@ -42,6 +42,18 @@ export default function Analytics() {
             (task: any) => task.completed
         ).length
 
+    const remainingSubjects =
+        subjects.length - completedSubjects
+
+    const remainingTasks =
+        tasks.length - completedTasks
+
+    const remainingHours =
+        Math.max(
+            totalHours - totalStudiedHours,
+            0
+        )
+
     return (
         <div className="flex-1 p-8">
 
@@ -49,6 +61,7 @@ export default function Analytics() {
                 Analytics
             </h1>
 
+            {/* Top Analytics Cards */}
             <div className="grid grid-cols-4 gap-4">
 
                 <StatCard
@@ -73,6 +86,7 @@ export default function Analytics() {
 
             </div>
 
+            {/* Subject Progress */}
             <h2 className="text-2xl font-bold mt-10 mb-5">
                 Subject Progress
             </h2>
@@ -107,8 +121,8 @@ export default function Analytics() {
 
                                 <div
                                     className={`h-3 rounded-full ${progress === 100
-                                            ? "bg-green-500"
-                                            : "bg-blue-500"
+                                        ? "bg-green-500"
+                                        : "bg-blue-500"
                                         }`}
                                     style={{
                                         width: `${Math.min(progress, 100)}%`
@@ -117,9 +131,37 @@ export default function Analytics() {
 
                             </div>
 
+                            <p className="text-gray-400 text-sm mt-2">
+                                {(subject.studiedMinutes / 60).toFixed(1)} / {subject.totalHours} Hours
+                            </p>
+
                         </div>
                     )
                 })}
+
+            </div>
+
+            {/* Completion Summary */}
+            <h2 className="text-2xl font-bold mt-10 mb-5">
+                Completion Summary
+            </h2>
+
+            <div className="grid grid-cols-3 gap-4">
+
+                <StatCard
+                    title="Remaining Hours"
+                    value={remainingHours.toFixed(1)}
+                />
+
+                <StatCard
+                    title="Remaining Subjects"
+                    value={remainingSubjects.toString()}
+                />
+
+                <StatCard
+                    title="Remaining Tasks"
+                    value={remainingTasks.toString()}
+                />
 
             </div>
 

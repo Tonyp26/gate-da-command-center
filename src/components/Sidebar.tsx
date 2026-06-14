@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default function Sidebar() {
   return (
     <div className="w-64 bg-[#161B22] p-5 min-h-screen">
@@ -8,11 +10,21 @@ export default function Sidebar() {
 
       <div className="space-y-4">
 
-        <div>Dashboard</div>
+        <Link
+          to="/"
+          className="block hover:text-blue-400"
+        >
+          Dashboard
+        </Link>
 
         <div>Subjects</div>
 
-        <div>Tasks</div>
+        <Link
+          to="/tasks"
+          className="block hover:text-blue-400"
+        >
+          Tasks
+        </Link>
 
         <div>Analytics</div>
 

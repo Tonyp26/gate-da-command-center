@@ -12,12 +12,14 @@ export default function Dashboard() {
       ? JSON.parse(savedData)
       : subjects
   })
+
   const totalStudiedHours =
     subjectData.reduce(
       (total, subject) =>
         total + subject.studiedMinutes,
       0
     ) / 60
+
   const totalHours =
     subjectData.reduce(
       (total, subject) =>
@@ -29,13 +31,23 @@ export default function Dashboard() {
     (totalStudiedHours / totalHours) * 100
   )
 
+  const examDate = new Date("2027-02-01")
+  const today = new Date()
+
+  const daysLeft = Math.max(
+    0,
+    Math.ceil(
+      (examDate.getTime() - today.getTime()) /
+      (1000 * 60 * 60 * 24)
+    )
+  )
+
   useEffect(() => {
     localStorage.setItem(
       "gateSubjects",
       JSON.stringify(subjectData)
     )
   }, [subjectData])
-
 
   const addHour = (subjectName: string) => {
     setSubjectData(
@@ -76,6 +88,7 @@ export default function Dashboard() {
       </h1>
 
       <div className="grid grid-cols-4 gap-4">
+
         <StatCard
           title="Progress"
           value={`${overallProgress}%`}
@@ -83,7 +96,7 @@ export default function Dashboard() {
 
         <StatCard
           title="Hours"
-          value={`${totalStudiedHours.toFixed(1)}/181`}
+          value={`${totalStudiedHours.toFixed(1)}/${totalHours}`}
         />
 
         <StatCard
@@ -93,8 +106,9 @@ export default function Dashboard() {
 
         <StatCard
           title="Days Left"
-          value="245"
+          value={daysLeft.toString()}
         />
+
       </div>
 
       <h2 className="text-2xl font-bold mt-10 mb-5">
@@ -102,6 +116,7 @@ export default function Dashboard() {
       </h2>
 
       <div className="grid grid-cols-2 gap-4">
+
         {subjectData.map((subject) => (
           <SubjectCard
             key={subject.name}
@@ -111,9 +126,10 @@ export default function Dashboard() {
             progress={
               Math.min(
                 Math.round(
-                  (subject.studiedMinutes /
-                    (subject.totalHours * 60)) *
-                  100
+                  (
+                    subject.studiedMinutes /
+                    (subject.totalHours * 60)
+                  ) * 100
                 ),
                 100
               )
@@ -122,6 +138,7 @@ export default function Dashboard() {
             onAdd30Min={() => add30Min(subject.name)}
           />
         ))}
+
       </div>
     </div>
   )

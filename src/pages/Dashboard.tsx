@@ -30,6 +30,17 @@ export default function Dashboard() {
   const overallProgress = Math.round(
     (totalStudiedHours / totalHours) * 100
   )
+  const savedTasks =
+    JSON.parse(
+      localStorage.getItem("gateTasks") || "[]"
+    )
+
+  const completedTasks =
+    savedTasks.filter(
+      (task: any) => task.completed
+    ).length
+
+  const totalTasks = savedTasks.length
 
   const examDate = new Date("2027-02-01")
   const today = new Date()
@@ -100,8 +111,8 @@ export default function Dashboard() {
         />
 
         <StatCard
-          title="Streak"
-          value="0"
+          title="Tasks Done"
+          value={`${completedTasks}/${totalTasks}`}
         />
 
         <StatCard

@@ -73,6 +73,56 @@ export default function Analytics() {
 
             </div>
 
+            <h2 className="text-2xl font-bold mt-10 mb-5">
+                Subject Progress
+            </h2>
+
+            <div className="space-y-4">
+
+                {subjects.map((subject: any) => {
+                    const progress = Math.round(
+                        (subject.studiedMinutes /
+                            (subject.totalHours * 60)) *
+                        100
+                    )
+
+                    return (
+                        <div
+                            key={subject.name}
+                            className="bg-[#1C2128] p-4 rounded-xl"
+                        >
+                            <div className="flex justify-between mb-2">
+
+                                <span>
+                                    {subject.name}
+                                </span>
+
+                                <span>
+                                    {Math.min(progress, 100)}%
+                                </span>
+
+                            </div>
+
+                            <div className="w-full h-3 bg-gray-700 rounded-full">
+
+                                <div
+                                    className={`h-3 rounded-full ${progress === 100
+                                            ? "bg-green-500"
+                                            : "bg-blue-500"
+                                        }`}
+                                    style={{
+                                        width: `${Math.min(progress, 100)}%`
+                                    }}
+                                />
+
+                            </div>
+
+                        </div>
+                    )
+                })}
+
+            </div>
+
         </div>
     )
 }

@@ -38,9 +38,17 @@ export default function Sidebar() {
           Tasks
         </NavLink>
 
-        <div className="p-2 text-gray-500">
+        <NavLink
+          to="/analytics"
+          className={({ isActive }) =>
+            `block p-2 rounded-lg ${isActive
+              ? "bg-blue-600 text-white"
+              : "hover:bg-[#21262D]"
+            }`
+          }
+        >
           Analytics
-        </div>
+        </NavLink>
 
       </div>
 

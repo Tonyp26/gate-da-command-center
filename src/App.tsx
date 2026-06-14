@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Analytics from "./pages/Analytics"
 
 import Sidebar from "./components/Sidebar"
 import Dashboard from "./pages/Dashboard"
@@ -11,6 +12,10 @@ function App() {
         <Sidebar />
 
         <Routes>
+          <Route
+            path="/analytics"
+            element={<Analytics />}
+          />
           <Route
             path="/"
             element={<Dashboard />}

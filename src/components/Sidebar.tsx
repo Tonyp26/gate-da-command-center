@@ -50,6 +50,20 @@ export default function Sidebar() {
           Analytics
         </NavLink>
 
+        <div className="border-t border-gray-700 my-3"></div>
+
+        <NavLink
+          to="/ipl"
+          className={({ isActive }) =>
+            `block p-2 rounded-lg ${isActive
+              ? "bg-green-700 text-white"
+              : "hover:bg-[#21262D] text-green-400"
+            }`
+          }
+        >
+          IPL ML Project
+        </NavLink>
+
       </div>
 
     </div>

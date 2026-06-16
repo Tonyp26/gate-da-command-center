@@ -1,0 +1,21 @@
+{
+  "feature_cols": [
+    "t1_enc",
+    "t2_enc",
+    "toss_enc",
+    "toss_winner_bat_first",
+    "toss_field",
+    "venue_freq",
+    "venue_avg_inn1",
+    "recent5_diff",
+    "recent10_diff",
+    "cum_pct_diff",
+    "t1_h2h_pct",
+    "t1_h2h_n",
+    "home_diff",
+    "t1_matches",
+    "t2_matches",
+    "season_num"
+  ],
+  "model_name": "RandomForest"
+}

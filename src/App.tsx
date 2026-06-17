@@ -4,7 +4,6 @@ import Analytics from "./pages/Analytics"
 import Sidebar from "./components/Sidebar"
 import Dashboard from "./pages/Dashboard"
 import Tasks from "./pages/Tasks"
-import IPLDashboard from "./pages/IPLDashboard"
 
 function App() {
   return (
@@ -25,10 +24,6 @@ function App() {
           <Route
             path="/tasks"
             element={<Tasks />}
-          />
-          <Route
-            path="/ipl"
-            element={<IPLDashboard />}
           />
         </Routes>
 
